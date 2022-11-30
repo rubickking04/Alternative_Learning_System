@@ -1,0 +1,17 @@
+{
+    "name": "Alternative Learning System",
+    "short_name": "LPT",
+    "start_url": "/index.php",
+    "background_color": "#6777ef",
+    "description": "Alternative_Learning_System",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "icons": [
+        {
+            "src": "/storage/images/logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
