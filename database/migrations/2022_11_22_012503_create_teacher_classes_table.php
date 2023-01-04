@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->uuid('uuid')->unique();
             $table->unsignedBigInteger('teacher_id');
-            $table->foreign('teacher_id')->references('id')->on('teachers');
+            $table->foreign('teacher_id')->references('id')->on('teachers')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('subject')->nullable();
             $table->string('description')->nullable();
             $table->string('yearLevel')->nullable();

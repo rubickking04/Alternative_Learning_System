@@ -37,6 +37,12 @@ use App\Http\Controllers\Teacher\LogoutController as TeacherLogoutController;
  */
 
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Admin\StudentsTableController as AdminStudentController;
+use App\Http\Controllers\Admin\TeachersTableController as AdminTeacherController;
+use App\Http\Controllers\Admin\LoginController as AdminLoginController;
+use App\Http\Controllers\Admin\LogoutController as AdminLogoutController;
+
+
 
 
 
@@ -153,11 +159,33 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     });
 
     /**
+     * Routes to Login of the Teachers Account.
+     */
+    Route::controller(AdminLoginController::class)->group(function (){
+        Route::get('/admin/auth/login', 'index')->name('admin.login');
+        Route::post('/admin/auth/login', 'login')->name('auth.admin.login');
+    });
+    /**
      * Routes to Dashboard of the Administrators Account.
      */
     Route::group(['middleware' => 'auth:admin'], function () {
         Route::controller(AdminHomeController::class)->group(function () {
-            Route::get('/admin/home', 'index')->name('admin.home');
+            Route::get('/admin/dashboard', 'index')->name('admin.home');
+        });
+        Route::controller(AdminStudentController::class)->group(function () {
+            Route::get('/admin/tables/students', 'index')->name('admin.students');
+            Route::post('/admin/students/update/{id}', 'update')->name('admin.students.update');
+            Route::get('/admin/students/search', 'search')->name('admin.student.search');
+            Route::get('/admin/students/delete{id}', 'destroy')->name('admin.students.delete');
+        });
+        Route::controller(AdminTeacherController::class)->group(function () {
+            Route::get('/admin/tables/teachers', 'index')->name('admin.teachers');
+            Route::post('/admin/teachers/update/{id}', 'update')->name('admin.teachers.update');
+            Route::get('/admin/teachers/search', 'search')->name('admin.teacher.search');
+            Route::get('/admin/teachers/delete{id}', 'destroy')->name('admin.teacher.delete');
+        });
+        Route::controller(AdminLogoutController::class)->group(function () {
+            Route::post('/admin/auth/logout', 'logout')->name('admin.logout');
         });
     });
 });

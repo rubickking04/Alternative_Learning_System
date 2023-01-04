@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
-use App\Models\Teacher;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class SubjectsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = User::latest()->take(7)->get();
-        $teacher = Teacher::latest()->take(7)->get();
-        return view('admin.home', compact('user', 'teacher'));
+        //
     }
 
     /**

@@ -66,7 +66,7 @@
                         <ul class="btn-toggle-nav nav nav-pills flex-column mb-sm-auto mb-auto mb-0 align-items-start list-unstyled fw-normal pb-2">
                             <li class="nav-item">
                                 <a href="{{ route('admin.students') }}" class="ms-2 nav-link text-decoration-none rounded">
-                                    <i class="fs-5 fa-solid fa-angles-right text-dark"></i>
+                                    <i class="fs-5 fa-solid fa-angles-right"></i>
                                     <span class="ms-2 text-dark">{{ __('Students Table ') }}
                                         <span class="badge text-bg-danger">{{ __('('.App\Models\User::all()->count().')') }}</span>
                                     </span>
@@ -74,7 +74,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.teachers') }}" class="ms-2 nav-link text-decoration-none rounded">
-                                    <i class="fs-5 fa-solid fa-angles-right text-dark"></i>
+                                    <i class="fs-5 fa-solid fa-angles-right"></i>
                                     <span class="ms-2 text-dark">{{ __('Teachers Table ') }}
                                         <span class="badge text-bg-danger">{{ __('('.App\Models\Teacher::all()->count().')') }}</span>
                                     </span>
@@ -82,7 +82,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="ms-2 nav-link text-decoration-none rounded">
-                                    <i class="fs-5 fa-solid fa-angles-right text-dark"></i>
+                                    <i class="fs-5 fa-solid fa-angles-right"></i>
                                     <span class="ms-2 text-dark">{{ __('Subjects Table ') }}
                                         <span class="badge text-bg-danger">{{ __('('.App\Models\TeacherClass::all()->count().')') }}</span>
                                     </span>
@@ -116,72 +116,6 @@
 
     <div class="container">
         <main class="py-4">
-            <div class="row mb-4">
-                <div class="col-6">
-                    <h4>{{  __('Dashboard')  }}</h4>
-                </div>
-                <div class="col-6 d-flex flex-row-reverse">
-                    <div class="text-end"  style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                        <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item">Home</li>
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-4">
-                    <div class="card">
-                        <div class="py-2 container">
-                            <div class="card-body h-100">
-                                <div class="row">
-                                    <div class="col-lg-8 col-sm-6 col-6 col-md-auto">
-                                        <h2 class="users-count" id="users-count">{{ App\Models\User::all()->count() }}</h2>
-                                        <h5 class="card-title"> {{ __('Student') }}</h5>
-                                    </div>
-                                    <div class="col-lg-4 col-sm-6 col-md-auto col-6 mt-3 text-center">
-                                        <i class="fa-solid fa-users fs-1"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card">
-                        <div class="py-2 container">
-                            <div class="card-body h-100">
-                                <div class="row">
-                                    <div class="col-lg-8 col-sm-6 col-6 col-md-auto">
-                                        <h2 class="users-count" id="users-count">{{ App\Models\Teacher::all()->count() }}</h2>
-                                        <h5 class="card-title"> {{ __('Teacher') }}</h5>
-                                    </div>
-                                    <div class="col-lg-4 col-sm-6 col-md-auto col-6 mt-3 text-center">
-                                        <i class="fa-solid fa-users fs-1"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card">
-                        <div class="py-2 container">
-                            <div class="card-body h-100">
-                                <div class="row">
-                                    <div class="col-lg-8 col-sm-6 col-6 col-md-auto">
-                                        <h2 class="users-count" id="users-count">{{ App\Models\TeacherClass::all()->count() }}</h2>
-                                        <h5 class="card-title"> {{ __('Subject') }}</h5>
-                                    </div>
-                                    <div class="col-lg-4 col-sm-6 col-md-auto col-6 mt-2 text-center ">
-                                        <i class="bi bi-menu-button-wide-fill fs-1"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             @yield('content')
         </main>
     </div>
