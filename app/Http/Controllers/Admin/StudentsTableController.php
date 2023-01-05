@@ -55,7 +55,7 @@ class StudentsTableController extends Controller
         $user->name = $request['name'];
         $user->email = $request['email'];
         $user->save();
-        return back();
+        return back()->with('message', 'Data updated successfully.');
             // dd($user);
     }
 
@@ -68,6 +68,6 @@ class StudentsTableController extends Controller
     public function destroy($id)
     {
         $user = User::find($id)->delete();
-        return back();
+        return back()->with('message', 'User removed successfully.');
     }
 }

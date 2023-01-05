@@ -38,11 +38,11 @@
                 <div class="card-body h-100">
                     <div class="row">
                         <div class="col-lg-8 col-sm-6 col-6 col-md-auto">
-                            <h2 class="users-count" id="users-count">{{ App\Models\Teacher::all()->count() }}</h2>
-                            <h5 class="card-title"> {{ __('Teacher') }}</h5>
+                            <h2 class="users-count" id="users-count">{{ App\Models\TeacherClass::all()->count() }}</h2>
+                            <h5 class="card-title"> {{ __('Subject') }}</h5>
                         </div>
-                        <div class="col-lg-4 col-sm-6 col-md-auto col-6 mt-3 text-center">
-                            <i class="fa-solid fa-users fs-1"></i>
+                        <div class="col-lg-4 col-sm-6 col-md-auto col-6 mt-2 text-center ">
+                            <i class="bi bi-menu-button-wide-fill fs-1"></i>
                         </div>
                     </div>
                 </div>
@@ -55,11 +55,11 @@
                 <div class="card-body h-100">
                     <div class="row">
                         <div class="col-lg-8 col-sm-6 col-6 col-md-auto">
-                            <h2 class="users-count" id="users-count">{{ App\Models\TeacherClass::all()->count() }}</h2>
-                            <h5 class="card-title"> {{ __('Subject') }}</h5>
+                            <h2 class="users-count" id="users-count">{{ App\Models\Teacher::all()->count() }}</h2>
+                            <h5 class="card-title"> {{ __('Teacher') }}</h5>
                         </div>
-                        <div class="col-lg-4 col-sm-6 col-md-auto col-6 mt-2 text-center ">
-                            <i class="bi bi-menu-button-wide-fill fs-1"></i>
+                        <div class="col-lg-4 col-sm-6 col-md-auto col-6 mt-3 text-center">
+                            <i class="fa-solid fa-users fs-1"></i>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                     <div class="col-lg-11 col-12">
                         <div class="row border-bottom border-2 border-dark">
                             <div class="col-lg-8 col-md-7 col-sm-6 col-6 d-none d-sm-block">
-                                <div class="text-start py-3 fs-4 fw-bold card-title">{{ __('Students Table') }}
+                                <div class="text-start py-3 fs-4 fw-bold card-title roboto">{{ __('Students Table') }}
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-5 col-sm-6 col-12 py-3">
@@ -98,9 +98,9 @@
                                                         <i class="bi bi-exclamation-triangle-fill fs-1 text-warning text-center"></i>
                                                     </div>
                                                     <div class="card-body">
-                                                        <p class="h2 fw-bold text-danger text-center">{{ __('ERROR 404 | Not Found!') }}</p>
-                                                        <h5 class="card-title fw-bold text-center">{{ session('msg') }}</h5>
-                                                        <p class="card-text fw-bold text-center text-muted">{{ __('Sorry, but the query you were looking for was either not found or does not exist.') }} </p>
+                                                        <p class="h2 fw-bold text-danger text-center roboto">{{ __('ERROR 404 | Not Found!') }}</p>
+                                                        <h5 class="card-title fw-bold text-center roboto">{{ session('msg') }}</h5>
+                                                        <p class="card-text fw-bold text-center text-muted roboto">{{ __('Sorry, but the query you were looking for was either not found or does not exist.') }} </p>
                                                         <div class="row justify-content-center">
                                                             <div class="col-lg-5 col-md-5 col-sm-10 col-12">
                                                                 <div class="row">
@@ -122,9 +122,10 @@
                                                 </div>
                                             @else
                                                 @if (Session::has('message'))
-                                                    <div class="alert alert-success" role="alert">
+                                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
                                                         <i class="fa-solid fa-check"></i>
-                                                        <span class="px-2">{{ Session::get('message') }}</span>
+                                                        <span class="px-2 roboto">{{ Session::get('message') }}</span>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                                     </div>
                                                 @endif
                                                     <tbody>
@@ -137,7 +138,7 @@
                                                                         <img src="{{ asset('/storage/images/avatar.png')}}" alt="hugenerd" width="35" height="35" class="rounded-circle">
                                                                     @endif
                                                                 </td>
-                                                                <td  class="text-start fw-bold h6 py-3 text-truncate" scope="row">{{ $users->name }}</td>
+                                                                <td  class="text-start fw-bold h6 py-3 text-truncate roboto" scope="row">{{ $users->name }}</td>
                                                                 <td  class="text-start" scope="row">{{ __(' ') }}</td>
                                                                 <td class="text-end" scope="row">
                                                                     <button type="button" class=" btn btn-success bi bi-eye-fill" data-bs-toggle="modal"data-bs-target="#exampleModalCenter{{ $users->id }}"></button>
@@ -219,6 +220,13 @@
                                 </div>
                             @else
                                 <div class="col-lg-12 mb-3 ">
+                                    @if (Session::has('message'))
+                                        <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+                                            <i class="fa-solid fa-check"></i>
+                                            <span class="px-2 roboto">{{ Session::get('message') }}</span>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    @endif
                                     <div class="mb-3 py-4">
                                         <div class="text-center display-1">
                                             {{-- <i class="fa-solid fa-users-slash display-1"></i> --}}

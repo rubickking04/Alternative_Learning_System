@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\StudentClass;
+use App\Models\TeacherClass;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Database\Query\Builder;
 
 class SubjectTableController extends Controller
 {
@@ -12,31 +15,36 @@ class SubjectTableController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(TeacherClass $subjects)
     {
-        //
+        $subject = TeacherClass::latest()->paginate(5);
+        $sub = collect($subjects)->first();
+        $subs = StudentClass::with('student','grades')->where('subject_id', $sub)->get();
+        return view('admin.subjects_table', compact('subs','subject'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Search the specified resource from TeacherClasses table.
      *
+     * @param  int  $id
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function search(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $search = $request->input('search');
+        $subject= TeacherClass::where('subject','LIKE','%'.$search.'%')->orWhere('section','LIKE','%'.$search.'%')->orWhere('yearLevel','LIKE','%'.$search.'%')
+        ->orWhereHas('teacher', function (Builder $query) use ($search)
+        {
+            $query->where('name','LIKE','%'.$search.'%');
+        })->paginate(10);
+        if(count($subject)>0)
+        {
+            return view('admin.subjects_table', compact('subject'));
+        }
+        else{
+            return back()->with('msg', 'We couldn\'t find "'.$search.'" on this page.' );
+        }
     }
 
     /**
@@ -59,6 +67,7 @@ class SubjectTableController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $subject = TeacherClass::where('id', $id)->first()->delete();
+        return back()->with('message', 'Subject removed successfully.');
     }
 }

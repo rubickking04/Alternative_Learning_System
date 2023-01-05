@@ -55,7 +55,7 @@ class TeachersTableController extends Controller
         $user->name = $request['name'];
         $user->email = $request['email'];
         $user->save();
-        return back();
+        return back()->with('message', 'Data updated successfully.');
     }
 
     /**
@@ -67,6 +67,6 @@ class TeachersTableController extends Controller
     public function destroy($id)
     {
         $teacher = Teacher::find($id)->delete();
-        return back()->with('success','Teacher deleted successfully.');
+        return back()->with('message','User remove successfully.');
     }
 }

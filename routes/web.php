@@ -39,6 +39,7 @@ use App\Http\Controllers\Teacher\LogoutController as TeacherLogoutController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\StudentsTableController as AdminStudentController;
 use App\Http\Controllers\Admin\TeachersTableController as AdminTeacherController;
+use App\Http\Controllers\Admin\SubjectTableController as AdminSubjectController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\LogoutController as AdminLogoutController;
 
@@ -183,6 +184,11 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
             Route::post('/admin/teachers/update/{id}', 'update')->name('admin.teachers.update');
             Route::get('/admin/teachers/search', 'search')->name('admin.teacher.search');
             Route::get('/admin/teachers/delete{id}', 'destroy')->name('admin.teacher.delete');
+        });
+        Route::controller(AdminSubjectController::class)->group(function () {
+            Route::get('/admin/tables/subjects', 'index')->name('admin.subjects');
+            Route::get('/admin/subjects/search', 'search')->name('admin.subject.search');
+            Route::get('/admin/subjects/delete/{id}', 'destroy')->name('admin.subject.delete');
         });
         Route::controller(AdminLogoutController::class)->group(function () {
             Route::post('/admin/auth/logout', 'logout')->name('admin.logout');
