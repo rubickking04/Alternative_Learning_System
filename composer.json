@@ -5,7 +5,7 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.0.2",
+        "php": "^8.2.0",
         "andcarpi/laravel-popper": "^0.9.4",
         "guzzlehttp/guzzle": "^7.2",
         "ladumor/laravel-pwa": "^0.0.3",
